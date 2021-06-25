@@ -47,6 +47,7 @@ public class TwitchReader : MonoBehaviour
     {
         if (!m_twitchClient.Connected)
         {
+            Debug.Log("Connection lost - Reconnecting");
             ConnectToTwitch();
         }
 
@@ -74,7 +75,7 @@ public class TwitchReader : MonoBehaviour
         }
     }
 
-    bool ConnectToTwitch()
+    void ConnectToTwitch()
     {
         Debug.Log("Connecting");
         m_twitchClient = new TcpClient("irc.chat.twitch.tv", 6667);
@@ -86,7 +87,5 @@ public class TwitchReader : MonoBehaviour
         m_twitchWriter.WriteLine("USER " + m_user.userName + " 8 * :" + m_user.userName);
         m_twitchWriter.WriteLine("JOIN #" + m_user.channelName);
         m_twitchWriter.Flush();
-
-        return true;
     }
 }
