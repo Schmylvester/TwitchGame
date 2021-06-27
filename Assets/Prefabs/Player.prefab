@@ -129,7 +129,7 @@ Transform:
   m_GameObject: {fileID: 2850638931802710943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 2850638930703040117}
   m_Father: {fileID: 0}
@@ -148,6 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_entity: {fileID: 3526181266746131484}
+  m_safeDistance: 1
+  m_minWorldBoundary: {x: -3.2, y: -1.6}
+  m_maxWorldBoundary: {x: 3.2, y: 1.6}
 --- !u!114 &3526181266746131484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,5 +166,13 @@ MonoBehaviour:
   m_animator: {fileID: 2850638930703040116}
   m_movementSpeed: 1
   m_maxHealth: 100
+  m_scale: 0.6
   m_bulletPrefab: {fileID: 4775144897043264610, guid: 29f45fc24ec4d324597016efa2da9093, type: 3}
-  m_fireRate: 0.3
+  m_fireRate: 1
+  m_staticAccuracy: 1
+  m_movingAccuracy: 0.75
+  m_walkSpeed: 0.2
+  m_runSpeed: 0.4
+  m_runningDodgeChance: 0.4
+  m_walkingDodgeChance: 0.1
+  m_standingDodgeChance: 0.02

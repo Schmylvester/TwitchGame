@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ZombieAI : EntityAI
 {
-    [SerializeField] Zombie m_entity = null;
-
     [SerializeField] float m_obsessiveness = 0.0f;
 
     private void Start()
@@ -19,6 +17,7 @@ public class ZombieAI : EntityAI
         {
             getTarget();
         }
+        m_entity.move((m_moveTarget - transform.position).normalized);
     }
 
     void getTarget()
@@ -26,8 +25,8 @@ public class ZombieAI : EntityAI
         GameObject nearestPlayer = findNearest(SpawnManager.instance.getPlayers());
         if (nearestPlayer)
         {
-            m_entity.setTargetPlayer(nearestPlayer);
-            m_entity.setTarget(nearestPlayer.transform.position);
+            (m_entity as Zombie).setTargetPlayer(nearestPlayer);
+            setTarget(nearestPlayer.transform.position);
         }
     }
 }

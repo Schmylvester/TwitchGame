@@ -4,11 +4,15 @@ using UnityEngine;
 
 public abstract class EntityAI : MonoBehaviour
 {
+    [SerializeField] protected Entity m_entity = null;
     protected abstract void doAThink();
+    protected Vector3 m_moveTarget = Vector3.zero;
 
     private void Update()
     {
-        doAThink();
+        if (GameStateManager.instance.getState() == GameState.InGame
+            || GameStateManager.instance.getState() == GameState.CountingDown)
+            doAThink();
     }
 
     protected GameObject findNearest(List<GameObject> gameObjects)
@@ -28,4 +32,15 @@ public abstract class EntityAI : MonoBehaviour
 
         return nearestObject;
     }
+
+    public void move(Vector3 _direction)
+    {
+        m_entity.move(_direction);
+    }
+
+    public void setTarget(Vector3 _target)
+    {
+        m_moveTarget = _target;
+    }
+
 }

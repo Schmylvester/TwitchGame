@@ -25,12 +25,12 @@ public class TwitchReader : MonoBehaviour
 
     List<string> m_validCommands = new List<string>
     {
-        "!join",
-        "!join priyah",
-        "!join xavier",
-        "!join rich"
+        "!JOIN",
+        "!STANCE",
+        "!WALK",
+        "!RUN"
     };
-    public delegate void chatCommandReceived(string user, string command);
+    public delegate void chatCommandReceived(string user, string[] commands);
     public chatCommandReceived m_chatEvent;
 
     void Start()
@@ -77,7 +77,7 @@ public class TwitchReader : MonoBehaviour
                 //Get the users message by splitting it from the string
                 splitPoint = message.IndexOf(":", 1);
                 message = message.Substring(splitPoint + 1);
-                parseMessage(chatName, message);
+                parseMessage(chatName, message.ToUpper());
             }
         }
     }
@@ -86,11 +86,26 @@ public class TwitchReader : MonoBehaviour
     {
         if (message[0] == '!')
         {
-            if (m_validCommands.Contains(message))
+            string[] messageParts = message.Split(' ');
+            if (m_validCommands.Contains(messageParts[0]))
             {
-                m_chatEvent.Invoke(chatName, message);
+                m_chatEvent.Invoke(chatName, messageParts);
             }
         }
+    }
+
+    public Color getUsernameColour(string username)
+    {
+        UnityEngine.Random.State seed = UnityEngine.Random.state;
+        int userID = 0;
+        foreach (char n in username)
+        {
+            userID += (int)n;
+        }
+        UnityEngine.Random.InitState(userID);
+        Color nameColour = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+        UnityEngine.Random.state = seed;
+        return nameColour;
     }
 
     void ConnectToTwitch()

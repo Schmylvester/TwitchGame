@@ -2,5 +2,7 @@ public enum GameState
 {
     Null = -1,
     Lobby,
-    InGame
+    CountingDown,
+    InGame,
+    GameOver
 }

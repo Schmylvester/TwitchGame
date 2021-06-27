@@ -17,12 +17,12 @@ public class Bullet : MonoBehaviour
         transform.Translate(Vector3.right * Time.deltaTime * m_bulletSpeed);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Zombie")
         {
             Vector3 direction = (collision.transform.position - transform.position).normalized;
-            collision.gameObject.GetComponent<Zombie>().takeDamage(5, direction * 0.2f);
+            collision.gameObject.GetComponent<Zombie>().takeDamage(5, direction * 0.02f);
         }
         Destroy(gameObject);
     }

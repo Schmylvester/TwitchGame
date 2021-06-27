@@ -4,12 +4,31 @@ using UnityEngine;
 
 public class ZombieSpawner : EntitySpawner
 {
-    [SerializeField] float m_spawnRate = 1.0f;
+    [SerializeField] float m_maxSpawnRate = 1.0f;
+    [SerializeField] float m_minSpawnRate = 1.0f;
+    [SerializeField] float m_spawnRateInterval = 1.0f;
+    [SerializeField] float m_spawnRateAmount = 0.01f;
+    float m_increaseRateTimer = 0.0f;
+    float m_spawnRate = 1.0f;
     [SerializeField] protected Transform m_spawnPosParent = null;
 
     private void Start()
     {
+        m_spawnRate = m_maxSpawnRate;
         StartCoroutine(spawnZombies());
+    }
+
+    private void Update()
+    {
+        if (m_spawnRate > m_minSpawnRate)
+        {
+            m_increaseRateTimer -= Time.deltaTime;
+            if (m_increaseRateTimer <= 0)
+            {
+                m_spawnRate = Mathf.Max(m_spawnRate - m_spawnRateAmount, m_minSpawnRate);
+                m_increaseRateTimer = m_spawnRateInterval;
+            }
+        }
     }
 
     IEnumerator spawnZombies()
