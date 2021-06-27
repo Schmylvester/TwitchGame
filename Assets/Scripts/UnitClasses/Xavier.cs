@@ -10,4 +10,5 @@ public class Xavier : UnitClass
     public override float getWalkingDodge() { return 0.01f; }
     public override float getWalkSpeed() { return 0.1f; }
     public override float getFireRate() { return 1.1f; }
+    public override void usePower() { return; } 
 }

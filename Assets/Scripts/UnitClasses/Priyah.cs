@@ -10,4 +10,5 @@ public class Priyah : UnitClass
     public override float getWalkingDodge() { return 0.05f; }
     public override float getWalkSpeed() { return 0.25f; }
     public override float getFireRate() { return 0.9f; }
+    public override void usePower() { return; } 
 }
