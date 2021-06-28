@@ -168,11 +168,3 @@ MonoBehaviour:
   m_maxHealth: 100
   m_scale: 0.6
   m_bulletPrefab: {fileID: 4775144897043264610, guid: 29f45fc24ec4d324597016efa2da9093, type: 3}
-  m_fireRate: 1
-  m_staticAccuracy: 1
-  m_movingAccuracy: 0.75
-  m_walkSpeed: 0.2
-  m_runSpeed: 0.4
-  m_runningDodgeChance: 0.4
-  m_walkingDodgeChance: 0.1
-  m_standingDodgeChance: 0.02

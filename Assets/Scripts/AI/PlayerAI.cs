@@ -124,7 +124,7 @@ public class PlayerAI : EntityAI
 
     void moveTowardsTarget()
     {
-        if (Vector3.Distance(transform.position, m_moveTarget) > 0.1f)
+        if (Vector3.Distance(transform.position, m_moveTarget) > 0.01f)
         {
             if (m_moveTarget != Vector3.zero)
             {

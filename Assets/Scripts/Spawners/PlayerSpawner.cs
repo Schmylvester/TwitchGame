@@ -6,8 +6,7 @@ public class PlayerSpawner : EntitySpawner
 {
     [SerializeField] TwitchReader m_twitchReader = null;
     List<string> m_joinedPlayers = new List<string>();
-    [SerializeField] Transform m_spawnCentre = null;
-    [SerializeField] float m_spawnRadius = 0.0f;
+    [SerializeField] DestinationNode m_spawnRoom = null;
 
     private void Start()
     {
@@ -58,15 +57,10 @@ public class PlayerSpawner : EntitySpawner
 
         m_joinedPlayers.Add(user);
         spawnedPlayer.name = user;
-        spawnedPlayer.transform.position = getSpawnPosition();
+        spawnedPlayer.transform.position = m_spawnRoom.getPointInRoom();
         setModel(spawnedPlayer.gameObject, characterIndex);
         addInfoPanel(spawnedPlayer.gameObject, user, _nameColour);
         SpawnManager.instance.addPlayer(spawnedPlayer.gameObject);
-    }
-
-    Vector3 getSpawnPosition()
-    {
-        return m_spawnCentre.position + ((Vector3)Random.insideUnitCircle * m_spawnRadius);
     }
 
     void addInfoPanel(GameObject _player, string _name, Color _nameColour)

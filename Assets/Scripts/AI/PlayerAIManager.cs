@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerAIManager : MonoBehaviour
 {
     [SerializeField] TwitchReader m_twitchReader;
-    [SerializeField] Transform[] m_nodes = null;
+    [SerializeField] DestinationNode[] m_nodes = null;
 
     void Start()
     {
@@ -41,7 +41,7 @@ public class PlayerAIManager : MonoBehaviour
         char n = arg[0];
         int i = (int)n - 65;
         if (i >= 0 && i < m_nodes.Length)
-            return m_nodes[i].position + ((Vector3)UnityEngine.Random.insideUnitCircle * 0.2f);
+            return m_nodes[i].getPointInRoom();
         return Vector3.zero;
     }
 }
