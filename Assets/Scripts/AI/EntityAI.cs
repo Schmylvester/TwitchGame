@@ -6,13 +6,18 @@ public abstract class EntityAI : MonoBehaviour
 {
     [SerializeField] protected Entity m_entity = null;
     protected abstract void doAThink();
-    protected Vector3 m_moveTarget = Vector3.zero;
+    protected PathFinding m_pathFinding = new PathFinding();
 
     private void Update()
     {
         if (GameStateManager.instance.getState() == GameState.InGame
             || GameStateManager.instance.getState() == GameState.CountingDown)
             doAThink();
+    }
+
+    public void setPathFindingStartPos(Node _node)
+    {
+        m_pathFinding.spawn(_node);
     }
 
     protected GameObject findNearest(List<GameObject> gameObjects)
@@ -38,9 +43,8 @@ public abstract class EntityAI : MonoBehaviour
         m_entity.move(_direction);
     }
 
-    public void setTarget(Vector3 _target)
+    public void setTarget(Node _target)
     {
-        m_moveTarget = _target;
+        m_pathFinding.createPath(_target);
     }
-
 }

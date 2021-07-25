@@ -11,12 +11,19 @@ public enum MoveType
 
 public class Player : Entity
 {
+    [SerializeField] PlayerAI m_myAI;
     [SerializeField] GameObject m_bulletPrefab = null;
+    [SerializeField] GameObject m_explosionPrefab = null;
     GameObject m_target = null;
     float m_cooldown = 0.0f;
     bool m_isMoving = false;
     float m_dodgeChance = 0.0f;
     UnitClass m_class;
+
+    public void usePower()
+    {
+        StartCoroutine(m_class.usePower(m_myAI, this));
+    }
 
     public void heal(float _healAmount)
     {
@@ -55,9 +62,9 @@ public class Player : Entity
         }
     }
 
-    public void shoot()
+    public void shoot(bool explosive = false)
     {
-        if (m_cooldown <= 0)
+        if (m_cooldown <= 0 || explosive)
         {
             if (m_target != null)
             {
@@ -70,6 +77,10 @@ public class Player : Entity
                 float angleToShoot = angleToZom + ((1 - accuracy) * Mathf.Lerp(-90, 90, Random.value));
                 bullet.Rotate(new Vector3(0, 0, angleToShoot));
                 m_cooldown = m_class.getFireRate();
+                if (explosive)
+                {
+                    bullet.gameObject.GetComponent<Bullet>().bulletExplodes = true;
+                }
             }
         }
         else

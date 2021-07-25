@@ -7,6 +7,8 @@ public class DestinationNode : Node
 {
     [SerializeField] Rect m_roomBounds;
 
+    public Rect getRoomBounds { get {  return m_roomBounds; } }
+
     public Vector3 getPointInRoom()
     {
         float x = Random.Range(m_roomBounds.x, m_roomBounds.x + m_roomBounds.width);

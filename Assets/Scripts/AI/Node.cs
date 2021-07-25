@@ -6,6 +6,11 @@ public class Node : MonoBehaviour
 {
     [SerializeField] protected Node[] m_connectedNodes;
 
+    public Node[] getConnectedNodes()
+    {
+        return m_connectedNodes;
+    }
+
     private void OnDrawGizmosSelected()
     {
         //DebugDraw();

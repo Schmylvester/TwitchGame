@@ -47,6 +47,7 @@ public class PlayerSpawner : EntitySpawner
         }
 
         Player spawnedPlayer = Instantiate(m_entityPrefab).GetComponent<Player>();
+        spawnedPlayer.GetComponent<PlayerAI>().setPathFindingStartPos(m_spawnRoom);
         UnitClass[] classes = new UnitClass[]
         {
             new Priyah(),

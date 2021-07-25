@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_animator: {fileID: 4014112783188621329}
-  m_movementSpeed: 0.2
-  m_maxHealth: 40
+  m_movementSpeed: 0.3
+  m_maxHealth: 45
   m_scale: 0.6
   m_attackCooldown: 1
 --- !u!61 &2366801838745649525

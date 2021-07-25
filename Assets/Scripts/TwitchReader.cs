@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Sockets;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.UI;
 
 [Serializable]
 public struct TwitchUser
@@ -23,12 +24,15 @@ public class TwitchReader : MonoBehaviour
     StringReader m_userStream;
     TwitchUser m_user;
 
+    [SerializeField] InputField m_debugField;
+
     List<string> m_validCommands = new List<string>
     {
         "!JOIN",
         "!STANCE",
         "!WALK",
-        "!RUN"
+        "!RUN",
+        "!POWER"
     };
     public delegate void chatCommandReceived(string user, string[] commands);
     public chatCommandReceived m_chatEvent;
@@ -120,5 +124,10 @@ public class TwitchReader : MonoBehaviour
         m_twitchWriter.WriteLine("USER " + m_user.userName + " 8 * :" + m_user.userName);
         m_twitchWriter.WriteLine("JOIN #" + m_user.channelName);
         m_twitchWriter.Flush();
+    }
+
+    public void debugCommand()
+    {
+        parseMessage("Martin", m_debugField.text.ToUpper());
     }
 }

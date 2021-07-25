@@ -149,8 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_entity: {fileID: 3526181266746131484}
   m_safeDistance: 1
-  m_minWorldBoundary: {x: -3.2, y: -1.6}
-  m_maxWorldBoundary: {x: 3.2, y: 1.6}
 --- !u!114 &3526181266746131484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,4 +165,6 @@ MonoBehaviour:
   m_movementSpeed: 1
   m_maxHealth: 100
   m_scale: 0.6
+  m_myAI: {fileID: 1268703512381209758}
   m_bulletPrefab: {fileID: 4775144897043264610, guid: 29f45fc24ec4d324597016efa2da9093, type: 3}
+  m_explosionPrefab: {fileID: 2819725682843812530, guid: 3d9488da036557a4eb249cdc318ac6ae, type: 3}
